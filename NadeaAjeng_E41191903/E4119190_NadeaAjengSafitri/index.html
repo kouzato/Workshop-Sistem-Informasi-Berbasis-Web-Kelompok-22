@@ -1,1 +1,87 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Data Kasir</title>
+</head>
+<body>
+<center>
+    <form action="target.html">
+        <fieldset>
+            <p>
+            <table>
+                <caption><h3>FORM DATA KASIR</h3></caption>
+                <tr>
+                    <td>
+                        <label>ID KASIR : </label>
+                    </td>
+                    <td>
+                        <input type="text" name="idkasir" placeholder="ID">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>NAMA KASIR :</label>
+                    </td>
+                    <td>
+                        <input type="text" name="nama" placeholder="NAMA" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>ALAMAT KASIR :</label>
+                    </td>
+                    <td>
+                        <select name="alamatkasir" >
+                            <option value="jember"> JEMBER</option>
+                            <option value="surabaya">SURABAYA</option>
+                            <option value="malang">MALANG</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>NOMOR TELEPON :</label>
+                    </td>
+                    <td>
+                        <input type="text" name="telp" placeholder="Telp" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>JENIS KELAMIN :</label>
+                    </td>
+                    <td>
+                        <input type="radio" id="pria" name="kelamin" value="PRIA">
+                        <label for="pria">PRIA</label>
+                        <input type="radio"  name="kelamin" value="WANITA">
+                        <label for="wanita">WANITA</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>USERNAME :</label>
+                    </td>
+                    <td>
+                        <input type="text" name="username" placeholder="Username" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>PASSWORD :</label>
+                    </td>
+                    <td>
+                        <input type="password" name="password" placeholder="Password" />
+                    </td>
+                </tr>
+            </table>
+            </p>
+            <p>
+                <input type="submit" value="Kirim">
+            </p>
+        </fieldset>
+    </form>
+</center>
+</body>
+</html>
