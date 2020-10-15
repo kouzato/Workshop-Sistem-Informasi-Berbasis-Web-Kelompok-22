@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Tugas 2 Form Kasir</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="container">  
+  <form id="contact" action="target.html" method="post">
+  <center><h3>Form Data Kasir</h3></center> 
+    <fieldset>
+      <h4>ID Kasir</h4>
+      <input placeholder="ID Kasir" type="text" tabindex="1" required autofocus>
+    </fieldset>
+    <fieldset>
+      <h4>Nama Kasir</h4>
+      <input placeholder="Nama Kasir" type="text" tabindex="2" required>
+    </fieldset>
+    <fieldset>
+      <h4>Alamat Kasir</h4>
+      <select name="alamatkasir" >
+        <option value="jember"> Jember</option>
+        <option value="surabaya">Surabaya</option>
+        <option value="malang">Malang</option>
+      </select>
+    </fieldset>
+    <fieldset>
+      <h4>Nomor Telepon</h4>
+      <input placeholder="Nomor Telepon" type="tel" tabindex="3" required>
+    </fieldset>
+    <fieldset>
+      <h4>Jenis Kelamin</h4>
+      <input type="radio" id="pria" name="kelamin" value="pria" required/>
+                        <label for="pria">Pria</label><br>
+      <input type="radio" id="wanita"  name="kelamin" value="wanita" required/>
+                        <label for="wanita">Wanita</label>
+    </fieldset>
+    <fieldset>
+      <h4>Username</h4>
+      <input placeholder="Username" type="text" tabindex="4" required>
+    </fieldset>
+    <fieldset>
+      <h4>Password</h4>
+      <input placeholder="Password" type="password" tabindex="5" required>
+    </fieldset>
+    <fieldset>
+      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+    </fieldset>
+  </form>
+</div>
+<!-- partial -->
+  
+</body>
+</html>
