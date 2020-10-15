@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        body {
+            border: 1px solid black; padding: 10px; text-align: center; width: auto; height: auto; 
+            background-color: lightblue;
+        }
+    </style>
+
+    <head>
+        <title> belajar form </title>
+    </head>
+
+    <body>
+ <center>       
+        <h1>FORM DATA KASIR</h1>
+
+<form action="target.html" method="GET">
+    <table>
+     <tr>
+         <td>
+            <label for="id">ID KASIR :</label>
+         </td>
+         <td>
+            <input type="text"><br><br>
+         </td>
+     </tr>
+        
+        <tr>
+            <td>
+                <label for="n">NAMA KASIR :</label>
+            </td>
+            <td>
+                <input type="text"><br><br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="alamat">ASAL KOTA :</label>
+            </td>
+            <td>
+                <select id="alamat">
+                    <option value="jember">--pilih kota asal--</option>
+                    <option value="jakarta">JAKARTA</option>
+                    <option value="surabaya">SURABAYA</option>
+                    <option value="bandung">BANDUNG</option>
+                </select><br><br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+
+                <label for="telp">NO TELEPON :</label>
+            </td>
+            <td>
+                <input type="text"><br><br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="jk">JENIS KELAMIN :</label>
+            </td>
+            <td>
+                <input type="radio" id="pria" name="kelamin" value="PRIA">
+                <label for="pria">PRIA</label>
+                <input type="radio"  name="kelamin" value="WANITA">
+                <label for="wanita">WANITA</label>
+            </td>
+        </tr>  
+        <tr>
+            <td>
+ 
+                <label for="user">USERNAME :</label>
+            </td>
+            <td>
+                <input type="text"><br><br>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label for="pw">PASSWORD :</label>
+            </td>
+            <td>
+                <input type="password"><br><br>
+            </td>
+        </tr>
+      
+        <tr>
+            <td>
+                <input type="submit" value="simpan">
+            </td>
+     
+        </tr>
+       
+   
+    
+    </table>
+</form>
+</center>
+    </body>
+
+</html>
