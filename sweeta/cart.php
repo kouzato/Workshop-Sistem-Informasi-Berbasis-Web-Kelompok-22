@@ -47,7 +47,8 @@ if(isset($_GET['kode_barang']) && !isset($_POST['update']))  {
     $result = mysqli_query($con, $sql);
 	$barang = mysqli_fetch_object($result); 
 	$item = new Item();
-	$item->id = $barang->kd_barang;
+    $item->id = $barang->kd_barang;
+    $item->foto = $barang->foto;
 	$item->name = $barang->nama_barang;
 	$item->price = $barang->harga_barang;
     $iteminstock = $barang->jumlah_barang;
@@ -65,7 +66,7 @@ if(isset($_GET['kode_barang']) && !isset($_POST['update']))  {
 		else {
 			
 			if (($cart[$index]->quantity) < $iteminstock)
-				 $cart[$index]->quantity ++;
+				 $cart[$index]->quantity++;
 			     $_SESSION['cart'] = $cart;
 		}
 }
@@ -119,46 +120,65 @@ if(isset($_POST['update'])) {
                     <div class="col-12">
                         <!-- Cart Table -->
                         <div class="cart-table table-responsive mb-30">
-                            <form method="post">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th class="pro-thumbnail">Foto</th>
-                                        <th class="pro-title">Nama Produk</th>
-                                        <th class="pro-price">Harga</th>
-                                        <th class="pro-quantity">Kuantitas</th>
-                                        <th class="pro-subtotal">Total</th>
-                                        <th class="pro-remove">Hapus</th>
-                                    </tr>
-                                    <?php 
-                                        $cart = unserialize(serialize($_SESSION['cart']));
+                            <form method="post" id="check" name="check" action="checkout.php">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="pro-thumbnail">Foto</th>
+                                            <th class="pro-title">Nama Produk</th>
+                                            <th class="pro-price">Harga</th>
+                                            <th class="pro-quantity">Kuantitas</th>
+                                            <th class="pro-subtotal">Total</th>
+                                            <th class="pro-remove">Hapus</th>
+                                        </tr>
+                                        <?php 
+                                        
+                                            error_reporting(E_ALL ^ E_NOTICE); //error ilang
+                                            $cart = unserialize(serialize($_SESSION['cart']));
                                             $s = 0;
                                             $index = 0;
+                                            
                                             for($i=0; $i<count($cart); $i++){
-                                                $s += $cart[$i]->price * $cart[$i]->quantity;
+                                                $s += $cart[$i]->price * $cart[$i]->quantity;    
                                         ?>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="pro-thumbnail"><a href="#"><img
-                                                    src="assets/images/product/product-3.jpg" alt="Product"></a></td>
-                                        <td class="pro-title"><a href="#"><?php echo $cart[$i]->name; ?></a></td>
-                                        <td class="pro-price"><span>Rp. <?php echo $cart[$i]->price; ?></span></td>
-                                        <td class="pro-quantity">
-                                            <div class="pro-qty"><input type="number" min="1" value="<?php echo $cart[$i]->quantity; 
-                                                    ?>" name="quantity[]"></div>
-                                        </td>
-                                        <td class="pro-subtotal"><span id="total">Rp.
-                                                <?php echo $cart[$i]->price * $cart[$i]->quantity; ?></span></td>
-                                        <td class="pro-remove"><a href="cart.php?index=<?php echo $index; ?>"
-                                                onclick="return confirm('Apakah anda yakin?')"><i
-                                                    class="fa fa-trash-o"></i></a></td>
-                                    </tr>
-                                    <?php 
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+
+                                            <td class="pro-thumbnail"><a href="#"><img
+                                                        src="assets/images/pic/<?php echo $cart[$i]->foto; ?>"
+                                                        alt="Product"></a>
+                                            </td>
+                                            <td class="pro-title"><span><?php echo $cart[$i]->name; ?></span></td>
+                                            <input type="hidden" name="nama[]" value="<?php echo $cart[$i]->name;?>">
+                                            <td class="pro-price"><span>Rp. <?php echo $cart[$i]->price; ?></span></td>
+                                            <input type="hidden" name="hargabarang">
+                                            <td class="pro-quantity">
+                                            
+                                                <div class="pro-qty">
+                                                
+                                                    <input type="number" id="qty" value="<?php echo $cart[$i]->quantity; 
+                                                    ?>" min="1">
+                                                </div>
+                                                <input type="hidden" name="kuantitas[]" value=" <?php echo $cart[$i]->quantity; 
+                                                    ?>">
+                                                <?php $subharga = $cart[$i]->price * $cart[$i]->quantity;?>
+                                            </td>
+                                            <td class="pro-subtotal"><span id="total" name="harga">Rp.
+                                                    <?php echo $subharga ?></span></td>
+                                            <input type="hidden" name="subharga[]" value="<?php echo $subharga ?>">
+
+                                            <td class="pro-remove"><a href="cart.php?index=<?php echo $index; ?>"
+                                                    onclick="return confirm('Apakah anda yakin?')"><i
+                                                        class="fa fa-trash-o"></i></a></td>
+                                        </tr>
+                                        <?php 
                                             $index++;
-                                        } ?>
-                                </tbody>
-                            </table>
+                                        }
+                                    
+                                        ?>
+                                    </tbody>
+                                </table>
                         </div>
                         <div class="row">
 
@@ -173,16 +193,20 @@ if(isset($_POST['update'])) {
                                     <div class="cart-summary-wrap">
 
 
-                                        <h2>Grand Total <span>Rp. <?php echo $s; ?></span></h2>
+                                        <h2>Grand Total <span name="gt">Rp. <?php echo $s; ?></span></h2>
+                                        <input type="hidden" name="grandtotal" value=" <?php echo $s; ?>">
+
                                     </div>
+
                                     <div class="cart-summary-button">
-                                        <button class="btn" onclick="document.location='checkout.php'">Checkout</button>
-                                        <button class="btn" name="update">Update</button>
-                                        <input type="hidden" name="update">
+                                        <button class="btn" type="submit" value="submit">Checkout</button>
+
+
+
                                     </div>
                                 </div>
                             </div>
-                                    </form>
+                            </form>
                         </div>
 
                     </div>
