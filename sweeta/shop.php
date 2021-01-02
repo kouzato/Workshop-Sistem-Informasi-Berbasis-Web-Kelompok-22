@@ -24,6 +24,19 @@
 require 'connect.php';
 $sql = 'SELECT * FROM barang ORDER BY nama_barang';
 $result = mysqli_query($con, $sql);
+
+	if(isset($_GET["keyword"])) {
+        $keyword = $_GET["keyword"];
+        
+        $queryCondition = "SELECT * FROM barang WHERE nama_barang LIKE '%$keyword%'";
+        
+	}else{
+        $queryCondition = "SELECT * FROM barang ORDER BY nama_barang";
+        
+    }
+    $result = mysqli_query($con, $queryCondition);
+
+	$orderby = " ORDER BY id desc"; 
 ?>
     <div id="main-wrapper">
 
@@ -60,10 +73,7 @@ $result = mysqli_query($con, $sql);
                                 <div class="col-12">
                                     <!-- Grid & List View Start -->
                                     <div class="shop-topbar-wrapper d-flex justify-content-between align-items-center">
-                                        <div class="grid-list-option d-flex">
-                                            
-                                            <p>Showing 1–9 of 41 results</p>
-                                        </div>
+
                                         <!--Toolbar Short Area Start-->
                                         <div class="toolbar-short-area d-md-flex align-items-center">
                                             <div class="toolbar-shorter ">
@@ -83,57 +93,59 @@ $result = mysqli_query($con, $sql);
                                     <!-- Grid & List View End -->
                                 </div>
                             </div>
-                            
+
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="shop-product">
-                                                
+
                                                 <div id="myTabContent-2" class="tab-content">
-                                                    
+
                                                     <div id="grid" class="tab-pane fade active show">
-                                                        
+
                                                         <div class="product-grid-view">
-                                                        
+
                                                             <div class="row">
-                                                            <?php while($barang = mysqli_fetch_object($result)) { ?>
+                                                                <?php while($barang = mysqli_fetch_object($result)) { ?>
                                                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                                                     <!--  Single Grid product Start -->
                                                                     <div class="single-grid-product mb-40">
                                                                         <div class="product-image">
-                                                                            
-                                                                            <a href="single-product.php">
-                                                                                <img src="./assets/images/product/product-1.jpg"
-                                                                                    class="img-fluid" alt="">
-                                                                                <img src="./assets/images/product/product-2.jpg"
+
+                                                                            <a
+                                                                                href="single-product.php?kode_barang=<?php echo $barang->kd_barang; ?>">
+                                                                                <img src="./assets/images/pic/<?php echo $barang->foto; ?>"
                                                                                     class="img-fluid" alt="">
                                                                             </a>
 
                                                                             <div class="product-action">
                                                                                 <ul>
-                                                                                    <li> <a href="cart.php?kode_barang=<?php echo $barang->kd_barang; ?> &action=add"><i
+                                                                                    <li> <a
+                                                                                            href="cart.php?kode_barang=<?php echo $barang->kd_barang; ?> &action=add"><i
                                                                                                 class="fa fa-cart-plus"></i></a>
                                                                                     </li>
-                                                                                     
+
                                                                                 </ul>
                                                                             </div>
                                                                         </div>
                                                                         <div class="product-content">
                                                                             <h3 class="title"> <a
-                                                                                    href="single-product.php"><?php echo $barang->nama_barang; ?></a></h3>
+                                                                                    href="single-product.php?kode_barang=<?php echo $barang->kd_barang; ?>"><?php echo $barang->nama_barang; ?></a>
+                                                                            </h3>
                                                                             <p class="product-price"><span
-                                                                                    class="discounted-price">Rp. <?php echo $barang->harga_barang; ?></span>
+                                                                                    class="discounted-price">Rp.
+                                                                                    <?php echo $barang->harga_barang; ?></span>
                                                                             </p>
-                                                                            
+
                                                                         </div>
                                                                     </div>
                                                                     <!--  Single Grid product End -->
-                                                                    
+
                                                                 </div>
                                                                 <?php } ?>
 
-                                                                
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -144,7 +156,7 @@ $result = mysqli_query($con, $sql);
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -170,7 +182,7 @@ $result = mysqli_query($con, $sql);
     <script src="assets/js/vendor/bootstrap.min.js"></script>
     <script src="assets/js/plugins/plugins.js"></script>
     <script src="assets/js/main.js"></script>
-  
+
 </body>
 
 </html>
