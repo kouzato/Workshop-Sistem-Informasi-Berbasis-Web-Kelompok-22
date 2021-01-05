@@ -24,7 +24,7 @@
     <div id="main-wrapper">
 
         <!--Header section start-->
-        <?php include "header.php" ?>
+        <?php include "header_web.php" ?>
 
 
         <!-- Page Banner Section Start -->
@@ -54,7 +54,7 @@
                         <!--About Us Image Start-->
                         <div class="about-us-img-wrapper mb-30 mb-xs-15">
                             <div class="about-us-image img-full">
-                                <a href="#"><img src="./assets/images/blog/blog-6.jpg" alt=""></a>
+                                <a href="#"><img src="./assets/images/blog/tentang.jpg" alt=""></a>
                             </div>
                         </div>
                         <!--About Us Image End-->
@@ -62,7 +62,7 @@
                     <div class="col-lg-6 col-12">
                         <!--About Us Content Start-->
                         <div class="about-us-content pl-30 pl-md-0 pl-sm-0 pl-xs-0">
-                            <span>Sejak 1999</span>
+                            <span>Sejak 1997</span>
                             <h2>Sweeta Collection yang awalnya hanya melayani tata rias pengantin. </h2>
                             <p>Sweeta Collection adalah usaha yang berkecimpung di bidang tata rias, wisuda, tari, karnaval dan tempat persewaan kostum.Dengan berjalannya waktu usaha yang di rintis oleh Triswita Nuswantarie ini kemudian lebih memfokuskan di bidang , tata rias dan persewaan kostum tari dan karnaval karena background nya memang seorang penari di masa sekolah dan kuliahnya sehingga pada saat pelaku seni tersebut menjadi seorang guru di salah satu SMP di kota Jember maka dia semakin menggeluti dunia seni tari dengan mengikuti berbagai kegiatan diklat dan pelatihan baik di kabupaten ataupun di propinsi.</p>
                             <p> Melihat peluang bahwa ternyata di kabupaten Jember masih kurang sekali usaha di bidang tersebut maka Sweeta Collection semakin melebarkan sayap dengan mencoba membuat sendiri beragam kostum yg di kreasikan dan di sesuaikan dengan perkembangan jaman yang tentu saja tetap berpegang teguh pada budaya dan tradisi seni Indonesia khususnya untuk kepentingan tari kreasi, tari daerah dan kontemporer.</p>

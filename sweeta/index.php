@@ -107,16 +107,16 @@
                                 <div class="single-grid-product mb-40">
                                     <div class="product-image">
 
-                                        <a href="single-product.php">
-                                            <img src="./assets/images/product/product-1.jpg" class="img-fluid" alt="">
-                                            <img src="./assets/images/product/product-2.jpg" class="img-fluid" alt="">
+                                        <a href="single-product.php?kode_barang=<?php echo $barang->kd_barang; ?>">
+                                            <img src="./assets/images/pic/<?php echo $barang->foto; ?>"
+                                                class="img-fluid" alt="">                      
                                         </a>
-
                                         <div class="product-action">
                                             <ul>
-                                                <li><a href="cart.php"><i class="fa fa-cart-plus"></i></a></li>
-
-
+                                                <li> <a
+                                                        href="cart.php?kode_barang=<?php echo $barang->kd_barang; ?> &action=add"><i
+                                                            class="fa fa-cart-plus"></i></a>
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
@@ -217,7 +217,7 @@
                                                 <div class="row align-items-center">
                                                     <div class="col-md-5">
                                                         <div class="testimonial-image">
-                                                            <img src="./assets/images/testimonial/testimonial-2.png"
+                                                            <img src="./assets/images/testimonial/testimonial-1.png"
                                                                 alt="">
                                                         </div>
                                                     </div>
@@ -226,7 +226,7 @@
                                                             <div class="testimonial-inner">
                                                                 <div class="testimonial-author">
                                                                     <div class="author-thumb">
-                                                                        <img src="assets/images/author/author-1.png"
+                                                                        <img src="assets/images/testimonial/endpoint.png"
                                                                             alt="">
                                                                     </div>
                                                                     <div class="author-info">
@@ -236,12 +236,29 @@
                                                                 </div>
                                                                 <div class="testimonial-description">
                                                                     <blockquote class="testimonials-text">
-                                                                        <p>"Lorem ipsum dolor sit amet consectetur
-                                                                            adipisicing elit. Totam placeat, reiciendis
-                                                                            ducimus, culpa voluptate aliquam ipsam esse
-                                                                            assumenda veniam quibusdam laudantium eaque
-                                                                            consequuntur fuga rerum porro aspernatur
-                                                                            praesentium hic fugit?"</p>
+                                                                    <table>
+                                                                    <tr>
+                                                                    <td>TTL</td>
+                                                                    <td> : </td>
+                                                                    <td> Jember, 12 Juli 1969</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                    <td>Alamat </td>
+                                                                    <td> : </td>
+                                                                    <td>Perumahan Jember Permai 1 Jl. Argopuro 3 blok c nmr 4 </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                    <td>Pekerjaan </td>
+                                                                    <td> : </td>
+                                                                    <td> Guru SMP</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                    <td>Riwayat Usaha </td>
+                                                                    <td> : </td>
+                                                                    <td> Sweeta Collection berdiri sejak tahum 1997 di awali dengan usaha rias pengantin, sejak tahun 2004 beralih pada penyewaan kostum tari Sampai saat ini.</td>
+                                                                    </tr>
+                                                                    </table>
+                                                                     
                                                                     </blockquote>
                                                                 </div>
                                                             </div>

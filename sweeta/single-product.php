@@ -20,16 +20,26 @@
 </head>
 
 <body>
+<?php 
+require 'connect.php';
+if(isset($_GET['kode_barang']))  { 
+$id = $_GET['kode_barang'];
+$sql = "SELECT * FROM barang WHERE kd_barang='$id'";
+$result = mysqli_query($con, $sql);
+$barang = mysqli_fetch_object($result); 
+}
 
+?>
     <div id="main-wrapper">
 
-        <?php include "header_web.php"?>
+        <?php include "header_web.php" ?>
 
 
 
-       
+
         <!-- Single Product Section Start -->
-        <div class="single-product-section section pt-60 pt-lg-40 pt-md-30 pt-sm-20 pt-xs-25 pb-100 pb-lg-80 pb-md-70 pb-sm-30 pb-xs-20" >
+        <div
+            class="single-product-section section pt-60 pt-lg-40 pt-md-30 pt-sm-20 pt-xs-25 pb-100 pb-lg-80 pb-md-70 pb-sm-30 pb-xs-20">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
@@ -40,97 +50,67 @@
                                     <div class="product-details-left">
                                         <div class="product-details-images">
                                             <div class="lg-image">
-                                                <img src="./assets/images/product/large-product/l-product-1.jpg" alt="">
-                                                <a href="./assets/images/product/large-product/l-product-1.jpg" class="popup-img venobox" data-gall="myGallery"><i class="fa fa-expand"></i></a>
+                                                <img src="./assets/images/pic/<?php echo $barang->foto_besar; ?>" alt="">
+                                                <a href="./assets/images/pic/<?php echo $barang->foto_besar; ?>"
+                                                    class="popup-img venobox" data-gall="myGallery"><i
+                                                        class="fa fa-expand"></i></a>
                                             </div>
-                                            <div class="lg-image">
-                                                <img src="./assets/images/product/large-product/l-product-2.jpg" alt="">
-                                                <a href="./assets/images/product/large-product/l-product-2.jpg" class="popup-img venobox" data-gall="myGallery"><i class="fa fa-expand"></i></a>
-                                            </div>
-                                            <div class="lg-image">
-                                                <img src="./assets/images/product/large-product/l-product-3.jpg" alt="">
-                                                <a href="./assets/images/product/large-product/l-product-3.jpg" class="popup-img venobox" data-gall="myGallery"><i class="fa fa-expand"></i></a>
-                                            </div>
-                                            <div class="lg-image">
-                                                <img src="./assets/images/product/large-product/l-product-4.jpg" alt="">
-                                                <a href="./assets/images/product/large-product/l-product-4.jpg" class="popup-img venobox" data-gall="myGallery"><i class="fa fa-expand"></i></a>
-                                            </div>
-                                            <div class="lg-image">
-                                                <img src="./assets/images/product/large-product/l-product-5.jpg" alt="">
-                                                <a href="./assets/images/product/large-product/l-product-5.jpg" class="popup-img venobox" data-gall="myGallery"><i class="fa fa-expand"></i></a>
-                                            </div>
+
                                         </div>
                                         <div class="product-details-thumbs">
-                                            <div class="sm-image"><img src="./assets/images/product/small-product/s-product-1.jpg" alt="product image thumb"></div>
-                                            <div class="sm-image"><img src="./assets/images/product/small-product/s-product-2.jpg" alt="product image thumb"></div>
-                                            <div class="sm-image"><img src="./assets/images/product/small-product/s-product-3.jpg" alt="product image thumb"></div>
-                                            <div class="sm-image"><img src="./assets/images/product/small-product/s-product-4.jpg" alt="product image thumb"></div>
-                                            <div class="sm-image"><img src="./assets/images/product/small-product/s-product-5.jpg" alt="product image thumb"></div>
+
                                         </div>
                                     </div>
                                     <!--Product Details Left -->
                                 </div>
                                 <div class="col-md-6">
                                     <!--Product Details Content Start-->
-                                    <div class="product-details-content">
-                                        <!--Product Nav Start-->
-                                        <div class="product-nav">
-                                            <a href="#"><i class="fa fa-angle-left"></i></a>
-                                            <a href="#"><i class="fa fa-angle-right"></i></a>
-                                        </div>
-                                        <!--Product Nav End-->
-                                        <h2>Baju Tari A</h2>
-                                        
-                                        <div class="single-product-price">
-                                            <span class="price new-price">Rp. xxx.xxx</span>
-                                            <span class="regular-price">Rp. xxx.xxx</span>
-                                        </div>
-                                        <div class="product-description">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco,Proin lectus ipsum, gravida et mattis vulputate, tristique ut lectus</p>
-                                        </div>
-                                        
-                                        <div class="single-product-quantity">
-                                            <form class="add-quantity" action="#">
-                                                <div class="product-quantity">
-                                                    <input value="1" type="number">
-                                                </div>
-                                                <div class="add-to-link">
-                                                    <button class="btn"><i class="fa fa-shopping-bag"></i>tambah</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        
-                                        <div class="product-meta">
-                                            <span class="posted-in">
-                                                Kategori : 
-                                                <a href="#">Kategori A</a>
-                                               
-                                            </span>
-                                        </div>
+
+                                    <!--Product Nav End-->
+                                    <h2><?php echo $barang->nama_barang; ?></h2>
+
+                                    <div class="single-product-price">
+                                        <span class="price new-price">Rp. <?php echo $barang->harga_barang; ?></span>
                                         
                                     </div>
-                                    <!--Product Details Content End-->
-                                </div >
+                                    <div class="product-description">
+                                        <p><?php echo $barang->deskripsi_barang; ?></p>
+                                    </div>
+
+                                    <div class="single-product-quantity">
+                                        <form class="add-quantity" action="cart.php?kode_barang=<?php echo $barang->kd_barang; ?> &action=add" method="POST">
+                                        
+                                            <div class="add-to-link">
+                                                <button class="btn">
+                                                <a class="fa fa-shopping-bag" href="cart.php?kode_barang=<?php echo $barang->kd_barang; ?> &action=add"></a> Tambah</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!--Product Details Content End-->
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Single Product Section End -->
+    </div>
+    <!-- Single Product Section End -->
 
-       
-        <!--Footer section start-->
-        <?php include "footer.php"?>
 
-       
+    <!--Footer section start-->
+    <?php include "footer.php"?>
+
+
     </div>
 
     <!-- Placed js at the end of the document so the pages load faster -->
 
     <!-- All jquery file included here -->
     <script src="assets/js/vendor/jquery-1.12.4.min.js"></script>
-    <script src="https://maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.22&key=AIzaSyDAq7MrCR1A2qIShmjbtLHSKjcEIEBEEwM"></script>
+    <script
+        src="https://maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.22&key=AIzaSyDAq7MrCR1A2qIShmjbtLHSKjcEIEBEEwM">
+    </script>
     <script src="assets/js/vendor/popper.min.js"></script>
     <script src="assets/js/vendor/bootstrap.min.js"></script>
     <script src="assets/js/plugins/plugins.js"></script>

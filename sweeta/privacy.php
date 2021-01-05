@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>nelson - Furniture eCommerce Bootstrap 4 Template</title>
+    <title>Sweeta - Privacy Policy</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Place favicon.ico in the root directory -->
@@ -24,7 +24,7 @@
     <div id="main-wrapper">
 
         <!--Header section start-->
-        <?php include "header.php" ?>
+        <?php include "header_web.php" ?>
         <!--Header section end-->
 
         
@@ -37,10 +37,7 @@
                             <!--Review And Description Tab Menu Start-->
                             <ul class="nav dec-and-review-menu">
                                 <li>
-                                    <a class="active" data-toggle="tab" href="#description">Kebijakan Privasi</a>
-                                </li>
-                                <li>
-                                    <a data-toggle="tab" href="#reviews">Kebijakan Sweeta</a>
+                                    <a class="active" data-toggle="tab" href="#description">Kebijakan Sweeta</a>
                                 </li>
                             </ul>
                             <!--Review And Description Tab Menu End-->
@@ -48,15 +45,11 @@
                             <div class="tab-content product-review-content-tab" id="myTabContent-4">
                                 <div class="tab-pane fade active show" id="description">
                                     <div class="single-product-description">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla.</p>
-                                        <p>Pellentesque aliquet, sem eget laoreet ultrices, ipsum metus feugiat sem, quis fermentum turpis eros eget velit. Donec ac tempus ante. Fusce ultricies massa massa. Fusce aliquam, purus eget sagittis vulputate, sapien libero hendrerit est, sed commodo augue nisi non neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, lorem et placerat vestibulum, metus nisi posuere nisl, in accumsan elit odio quis mi. Cras neque metus, consequat et blandit et, luctus a nunc. Etiam gravida vehicula tellus, in imperdiet ligula euismod eget.</p>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="reviews">
-                                    <div class="review-page-comment">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla.</p>
-                                        <p>Pellentesque aliquet, sem eget laoreet ultrices, ipsum metus feugiat sem, quis fermentum turpis eros eget velit. Donec ac tempus ante. Fusce ultricies massa massa. Fusce aliquam, purus eget sagittis vulputate, sapien libero hendrerit est, sed commodo augue nisi non neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, lorem et placerat vestibulum, metus nisi posuere nisl, in accumsan elit odio quis mi. Cras neque metus, consequat et blandit et, luctus a nunc. Etiam gravida vehicula tellus, in imperdiet ligula euismod eget.</p>
-                                    
+                                    <p>Aturan penyewaan kostum SWEETA Collection</p>
+                                        <p>1. Penyewaan harus lengkap per stel (tidak boleh menyewa per ornamen)</p>
+                                        <p>2. Penyewaan berlaku paleng lama dua hari, lebih dari itu kena cas seharga dua kali lipat dari harga sewa</p>
+                                        <p>3. Penyewa wajib membawa KTP, atau tanda pengenal lain </p>
+                                        <p>4. Apabila terjadi kerusakan atau kehilangan maka penyewa wajib mengembalikan barang yg hilang tersebut  bukan uang</p>
                                     </div>
                                 </div>
                             </div>
