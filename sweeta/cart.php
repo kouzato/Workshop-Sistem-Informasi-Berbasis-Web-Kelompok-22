@@ -42,8 +42,8 @@ require 'connect.php';
 require 'item.php';
 
 if(isset($_GET['kode_barang']) && !isset($_POST['update']))  { 
-    $id = $_GET['kode_barang'];
-	$sql = "SELECT * FROM barang WHERE kd_barang='$id'";
+    $idx = $_GET['kode_barang'];
+	$sql = "SELECT * FROM barang WHERE kd_barang='$idx'";
     $result = mysqli_query($con, $sql);
 	$barang = mysqli_fetch_object($result); 
 	$item = new Item();
@@ -52,11 +52,13 @@ if(isset($_GET['kode_barang']) && !isset($_POST['update']))  {
 	$item->name = $barang->nama_barang;
 	$item->price = $barang->harga_barang;
     $iteminstock = $barang->jumlah_barang;
-	$item->quantity = 1;
+	$item->kuantitas = 1;
 	// Check product is existing in cart
-	$index = -1;
+    $index = -1;
+    error_reporting(E_ERROR | E_PARSE);
 	$cart = unserialize(serialize($_SESSION['cart'])); // set $cart as an array, unserialize() converts a string into array
-	for($i=0; $i<count($cart);$i++)
+    error_reporting(E_ERROR | E_PARSE);
+    for($i=0; $i<count($cart);$i++)
 		if ($cart[$i]->id == $_GET['kode_barang']){
 			$index = $i;
 			break;
@@ -65,8 +67,8 @@ if(isset($_GET['kode_barang']) && !isset($_POST['update']))  {
 			$_SESSION['cart'][] = $item; // $_SESSION['cart']: set $cart as session variable
 		else {
 			
-			if (($cart[$index]->quantity) < $iteminstock)
-				 $cart[$index]->quantity++;
+			if (($cart[$index]->kuantitas) < $iteminstock)
+				 $cart[$index]->kuantitas++;
 			     $_SESSION['cart'] = $cart;
 		}
 }
@@ -79,10 +81,10 @@ if(isset($_GET['index']) && !isset($_POST['update'])) {
 }
 // Update quantity in cart
 if(isset($_POST['update'])) {
-  $arrQuantity = $_POST['quantity'];
+  $arrQuantity = $_POST['kuantitas'];
   $cart = unserialize(serialize($_SESSION['cart']));
   for($i=0; $i<count($cart);$i++) {
-     $cart[$i]->quantity = $arrQuantity[$i];
+     $cart[$i]->kuantitas = $arrQuantity[$i];
   }
   $_SESSION['cart'] = $cart;
 }
@@ -120,15 +122,15 @@ if(isset($_POST['update'])) {
                     <div class="col-12">
                         <!-- Cart Table -->
                         <div class="cart-table table-responsive mb-30">
-                            <form method="post" id="check" name="check" action="checkout.php">
+                            <form method="POST" id=check action="checkout.php">
                                 <table class="table">
                                     <thead>
                                         <tr>
                                             <th class="pro-thumbnail">Foto</th>
                                             <th class="pro-title">Nama Produk</th>
-                                            <th class="pro-price">Harga</th>
-                                            <th class="pro-quantity">Kuantitas</th>
-                                            <th class="pro-subtotal">Total</th>
+                                            
+                                            <th class="pro-quantity">Harga</th>
+                                            <th class="pro-subtotal">Tambah</th>
                                             <th class="pro-remove">Hapus</th>
                                         </tr>
                                         <?php 
@@ -137,9 +139,10 @@ if(isset($_POST['update'])) {
                                             $cart = unserialize(serialize($_SESSION['cart']));
                                             $s = 0;
                                             $index = 0;
-                                            
+                                            error_reporting(E_ERROR | E_PARSE);
                                             for($i=0; $i<count($cart); $i++){
-                                                $s += $cart[$i]->price * $cart[$i]->quantity;    
+                                                $s += $cart[$i]->price * $cart[$i]->kuantitas;
+                                                    
                                         ?>
                                     </thead>
                                     <tbody>
@@ -154,18 +157,14 @@ if(isset($_POST['update'])) {
                                             <td class="pro-price"><span>Rp. <?php echo $cart[$i]->price; ?></span></td>
                                             <input type="hidden" name="hargabarang">
                                             <td class="pro-quantity">
-                                            
-                                                <div class="pro-qty">
-                                                
-                                                    <input type="number" id="qty" value="<?php echo $cart[$i]->quantity; 
-                                                    ?>" min="1">
-                                                </div>
-                                                <input type="hidden" name="kuantitas[]" value=" <?php echo $cart[$i]->quantity; 
+                                                <a
+                                                    href="cart.php?kode_barang=<?php echo $cart[$i]->id; ?> &action=add"><i
+                                                        class="fa fa-cart-plus"></i></a>
+                                                <input type="hidden" name="kuantitas[]" value=" <?php echo $cart[$i]->kuantitas; 
                                                     ?>">
-                                                <?php $subharga = $cart[$i]->price * $cart[$i]->quantity;?>
+                                                <?php $subharga = $cart[$i]->price * $cart[$i]->kuantitas;?>
                                             </td>
-                                            <td class="pro-subtotal"><span id="total" name="harga">Rp.
-                                                    <?php echo $subharga ?></span></td>
+                                            
                                             <input type="hidden" name="subharga[]" value="<?php echo $subharga ?>">
 
                                             <td class="pro-remove"><a href="cart.php?index=<?php echo $index; ?>"
@@ -199,16 +198,14 @@ if(isset($_POST['update'])) {
                                     </div>
 
                                     <div class="cart-summary-button">
-                                        <button class="btn" type="submit" value="submit">Checkout</button>
-
-
-
+                                        <button class="btn" form="check" type="submit" value="submit">Checkout</button>
                                     </div>
                                 </div>
                             </div>
-                            </form>
-                        </div>
 
+
+                        </div>
+                        </form>
                     </div>
 
                 </div>

@@ -17,10 +17,24 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- Modernizr JS -->
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+    <style>
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+    </style>
 </head>
 
 <body>
-<?php include "connect.php" ?>
+
+    <?php include "connect.php" ?>
 
     <div id="main-wrapper">
 
@@ -67,48 +81,49 @@
 
                                             <div class="col-12 mb-20">
                                                 <label>Nama*</label>
-                                                <input type="text" placeholder="Nama" name="nama">
+                                                <input type="text" placeholder="Nama" name="nama" required>
                                             </div>
 
                                             <div class="col-md-6 col-12 mb-20">
                                                 <label>Email*</label>
-                                                <input type="email" placeholder="Email"  name="email">
+                                                <input type="email" placeholder="Email" name="email" required>
                                             </div>
 
                                             <div class="col-md-6 col-12 mb-20">
                                                 <label>Nomor KTP*</label>
-                                                <input type="text" placeholder="Nomor KTP" name="noktp">
+                                                <input type="text" placeholder="Nomor KTP" name="noktp"  pattern="[0-9]{16}" required>
                                             </div>
 
                                             <div class="col-12 mb-20">
                                                 <label>Nomor Telepon*</label>
-                                                <input type="text" placeholder="Nomor Telepon" name="notelp">
+                                                <input type="number" placeholder="Nomor Telepon" name="notelp" required>
                                             </div>
 
                                             <div class="col-12 mb-20">
                                                 <label>Alamat*</label>
-                                                <input type="text" placeholder="Alamat" name="alamat">
+                                                <input type="text" placeholder="Alamat" name="alamat" required>
 
                                             </div>
 
                                             <div class="col-md-6 col-12 mb-20">
                                                 <label>Provinsi*</label>
-                                                <input type="text" placeholder="Provinsi" name="provinsi">
+                                                <input type="text" placeholder="Provinsi" name="provinsi" required>
                                             </div>
 
                                             <div class="col-md-6 col-12 mb-20">
                                                 <label>Kota/Kabupaten*</label>
-                                                <input type="text" placeholder="Kota/Kabupaten" name="kota">
+                                                <input type="text" placeholder="Kota/Kabupaten" name="kota" required>
                                             </div>
 
                                             <div class="col-md-6 col-12 mb-20">
                                                 <label>Kecamatan/Kelurahan*</label>
-                                                <input type="text" placeholder="Kecamatan - Kelurahan" name="keckel">
+                                                <input type="text" placeholder="Kecamatan/Kelurahan" name="keckel"
+                                                    required>
                                             </div>
 
                                             <div class="col-md-6 col-12 mb-20">
                                                 <label>Kode Pos*</label>
-                                                <input type="text" placeholder="Kode Pos" name="kodepos">
+                                                <input type="number" placeholder="Kode Pos" name="kodepos"  pattern="[0-9]{5}" required>
                                             </div>
                                         </div>
                                     </div>
@@ -134,31 +149,39 @@
                                                     $subtotal = $_POST["grandtotal"];
                                                     ?>
                                                     <li>
-                                                        <?php                                                     
+                                                        <?php
+                                                        error_reporting(E_ERROR | E_PARSE);                                                     
                                                         foreach( $nama as $key => $n ) {
                                                             $id = mysqli_query($con,"SELECT kd_barang FROM barang WHERE nama_barang ='$n'");
                                                             $isi = mysqli_fetch_array($id);
                                                             $barang = $isi['kd_barang'];
                                                         ?>
-                                                            <input type="hidden" name="kd_barang[]" value="<?php echo $barang ?>">
-                                                            <input type="hidden" name="jumlah[]" value="<?php echo $kuantitas[$key] ?>">
-                                                            <input type="hidden" name="subharga[]" value="<?php echo $subharga[$key] ?>">
+                                                        <input type="hidden" name="kd_barang[]"
+                                                            value="<?php echo $barang ?>">
+                                                        <input type="hidden" name="jumlah[]"
+                                                            value="<?php echo $kuantitas[$key] ?>">
+                                                        <input type="hidden" name="subharga[]"
+                                                            value="<?php echo $subharga[$key] ?>">
                                                         <?php
                                                             echo $n." X".$kuantitas[$key].
                                                                   "<span>Rp. ".$subharga[$key]. "</span></br>";
                                                                   
                                                           }
-                                                          $totalbarang = count($kuantitas);
                                                           
-                                                          
+                                                          $totalbarang = count($nama);
+                                                         
                                                         ?>
-                                                        <input type="hidden" name="totalbarang" value="<?php print $totalbarang ?>">
+
+                                                        <input type="hidden" name="totalbarang"
+                                                            value="<?php print $totalbarang ?>">
                                                     </li>
                                                 </ul>
 
                                                 <h4>Grand Total <span>Rp. <?php echo $_POST["grandtotal"]; ?></span>
-                                                <input type="hidden" name="total" value="<?php echo $_POST["grandtotal"]; ?>">
+                                                    <input type="hidden" name="total"
+                                                        value="<?php echo $_POST["grandtotal"]; ?>">
                                                 </h4>
+                                                <h4>Total Barang <span><?php print($totalbarang); ?></span> </h4>
 
 
                                             </div>
@@ -174,14 +197,23 @@
 
                                                 <div class="single-method">
                                                     <input type="radio" id="payment_bank" name="payment-method"
-                                                        value="bank">
+                                                        value="Bank" required>
                                                     <label for="payment_bank">Bank Transfer</label>
                                                     <p data-method="bank">Bayar ke rekening BCA</p>
                                                 </div>
 
+                                                <div class="single-method">
+                                                    <input type="radio" id="payment_cash" name="payment-method"
+                                                        value="Cash">
+                                                    <label for="payment_cash">Bayar di Tempat</label>
+                                                    <p data-method="cash">Bayar saat mengambil barang
+                                                    </p>
+                                                </div>
+                                                
 
                                                 <div class="single-method">
-                                                    <input type="checkbox" id="accept_terms" value="setuju">
+                                                    
+                                                    <input type="checkbox" id="accept_terms" value="setuju" required="required">
                                                     <label for="accept_terms">Saya telah membaca dan menerima
                                                         Persyaratan & Ketentuan Sweeta</label>
 
@@ -189,7 +221,9 @@
 
                                             </div>
 
-                                            <button class="place-order btn btn-lg btn-round" type="submit" value="submit" name="checkout">PESAN DAN LANGSUNG
+                                            <button class="place-order btn btn-lg btn-round"
+                                                onclick="return confirm('Apakah anda yakin?')" type="submit"
+                                                value="submit" name="checkout">PESAN DAN LANGSUNG
                                                 BAYAR</button>
 
                                         </div>

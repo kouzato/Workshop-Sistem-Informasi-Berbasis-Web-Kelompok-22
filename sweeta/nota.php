@@ -17,14 +17,17 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- Modernizr JS -->
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script>
+    window.print();
+    </script>
 </head>
 
 <body>
-<?php 
+    <?php 
 require 'connect.php';
 if(isset($_GET['kode_checkout']))  { 
 $id = $_GET['kode_checkout'];
-$sql1 = "SELECT * FROM detail_checkout dc INNER JOIN checkout c ON dc.kd_checkout = c.kd_checkout INNER JOIN customer cs ON cs.id_customer = c.id_customer INNER JOIN barang b on b.kd_barang = dc.kd_barang WHERE c.kd_checkout='$id' GROUP BY dc.kd_checkout";
+$sql1 = "SELECT * FROM detail_checkout dc INNER JOIN checkout c ON dc.kd_checkout = c.kd_checkout INNER JOIN customer cs ON cs.id_customer = c.id_customer INNER JOIN barang b on b.kd_barang = dc.kd_barang WHERE c.kd_checkout='$id'";
 $result1 = mysqli_query($con, $sql1);
 $checkout = mysqli_fetch_object($result1); 
 
@@ -53,8 +56,22 @@ $result2 = mysqli_query($con, $sql2);
                             <td>
                                 <h2>Nomor Checkout</h2>
                             </td>
-                            <td><h2>:</h2></td>
-                            <td><h2><?php echo $checkout->kd_checkout; ?></h2></td>
+                            <td>
+                                <h2>:</h2>
+                            </td>
+                            <td>
+                                <h2><?php echo $checkout->kd_checkout; ?></h2>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Status</td>
+                            <td>:</td> 
+                            <td><?php if ($checkout->status == true) {
+                                                           echo "<strong>Selesai ✓</strong>";
+                                                        }else {
+                                                            echo "Sewa";
+                                                        }
+                                                        ?></td>
                         </tr>
                         <tr>
                             <td>Tanggal</td>
@@ -62,9 +79,9 @@ $result2 = mysqli_query($con, $sql2);
                             <td><?php echo $checkout->tanggal; ?></td>
                         </tr>
                         <tr>
-                            <td>Id Pelanggan</td>
+                            <td>Id Pelanggan / NIK Pelanggan</td>
                             <td>:</td>
-                            <td><?php echo $checkout->id_customer; ?></td>
+                            <td><?php echo $checkout->id_customer; ?> / <?php echo $checkout->no_ktp; ?></td>
                         </tr>
                         <tr>
                             <td>Nama Pelanggan</td>
@@ -76,13 +93,19 @@ $result2 = mysqli_query($con, $sql2);
                             <td>:</td>
                             <td><?php echo $checkout->no_telp; ?></td>
                         </tr>
-</table>
+                        <tr>
+                            <td>Alamat</td>
+                            <td>:</td>
+                            <td><?php echo $checkout->alamat; ?></td>
+                        </tr>
+
+                    </table>
                     <table class="table table-bordered">
                         <thead class="thead-light">
                             <tr>
                                 <th>Kode Barang</th>
                                 <th>Nama</th>
-                                <th>Kuantitas</th>
+
                                 <th>Harga</th>
 
 
@@ -98,22 +121,25 @@ $result2 = mysqli_query($con, $sql2);
                             <tr>
                                 <td><?php echo$detail_checkout['kd_barang']?></td>
                                 <td><?php echo$detail_checkout['nama_barang']?></td>
-                                <td><?php echo$detail_checkout['jumlah']?></td>
-                                <td><?php echo$detail_checkout['harga_barang']?></td>
+
+                                <td>Rp. <?php echo$detail_checkout['harga_barang']?></td>
                             </tr>
                             <?php 
                             
                         }?>
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <h4>TOTAL : </h4>
-                                </td>
-                                <td>Rp. <?php echo$detail_checkout['total_harga']?></td>
+
                             </tr>
-                            
+
                         </tbody>
+                        <thead class="thead-light">
+                            <tr>
+                                <th colspan="2">
+                                    <h4>Grand Total : </h4>
+                                </th>
+                                <th>Rp. <?php echo $checkout->total_harga; ?></th>
+                            </tr>
+                        </thead>
                     </table>
 
                 </div>
@@ -121,15 +147,24 @@ $result2 = mysqli_query($con, $sql2);
                     <table class="table">
                         <thead class="thead-light">
                             <tr>
-                                <th>Alamat : Jalan</th>
-                                <th>-</th>
-                                <th>-</th>
 
-                                <th>Grand Total :</th>
+                                <th>Metode Pembayaran :<?php 
+                                
+                                $bank = "Bank";
+                                $rek = " BCA = 3210319031";
+                                $uang = " Bayar di Rental Sweeta";
+                                if ($checkout->payment == $bank) {
+                                    echo $rek;
+                                }else {
+                                    echo $uang;
+                                }
+                                ?></th>
+
                             </tr>
                         </thead>
 
                     </table>
+                    <p>*Refresh untuk mencetak</p>
 
 
                 </div>
