@@ -70,31 +70,6 @@ $result = mysqli_query($con, $sql);
                     <div class="col-12">
                         <div class="shop-area">
                             <div class="row">
-                                <div class="col-12">
-                                    <!-- Grid & List View Start -->
-                                    <div class="shop-topbar-wrapper d-flex justify-content-between align-items-center">
-
-                                        <!--Toolbar Short Area Start-->
-                                        <div class="toolbar-short-area d-md-flex align-items-center">
-                                            <div class="toolbar-shorter ">
-                                                <label>Sort By:</label>
-                                                <select class="wide">
-                                                    <option data-display="Select">Nothing</option>
-                                                    <option value="Relevance">Relevance</option>
-                                                    <option value="Name, A to Z">Name, A to Z</option>
-                                                    <option value="Name, Z to A">Name, Z to A</option>
-                                                    <option value="Price, low to high">Price, low to high</option>
-                                                    <option value="Price, high to low">Price, high to low</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <!--Toolbar Short Area End-->
-                                    </div>
-                                    <!-- Grid & List View End -->
-                                </div>
-                            </div>
-
-                            <div class="row">
                                 <div class="col-lg-12">
                                     <div class="row">
                                         <div class="col-12">
