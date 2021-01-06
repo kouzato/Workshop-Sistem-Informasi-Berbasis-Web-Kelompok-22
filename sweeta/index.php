@@ -114,7 +114,7 @@
                                         <div class="product-action">
                                             <ul>
                                                 <li> <a
-                                                        href="cart.php?kode_barang=<?php echo $barang->kd_barang; ?> &action=add"><i
+                                                        href="cart.php?id=<?php echo $barang->kd_barang; ?> &action=add"><i
                                                             class="fa fa-cart-plus"></i></a>
                                                 </li>
                                             </ul>
