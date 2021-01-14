@@ -1,8 +1,8 @@
 <?php 
-$servername = 'localhost';
-$username = 'root';
-$password = '';
-$db = 'sweeta';
+$servername = 'wsjti.com';
+$username = 'u1011496_sweeta';
+$password = 'sweeta2020';
+$db = 'u1011496_sweeta';
 // Create connection
 $con = mysqli_connect($servername, $username, $password, $db);
  // Check connection
