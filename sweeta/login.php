@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Sweeta - Sewa</title>
+    <title>Sweeta - Login Admin</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Place favicon.ico in the root directory -->
@@ -22,10 +22,6 @@
 <body>
     <?php 
     require 'connect.php';
-    $sql = 'SELECT * FROM barang';
-    $result = mysqli_query($con, $sql);
-
-	
 	?>
     <div id="main-wrapper">
 
@@ -63,9 +59,23 @@
                                 <h2>Login</h2>
                             </div>
                             <div class="login-form">
-                                <form action="cek_login" method="POST">
+                                <?php 
+                                      if (isset($_GET['pesan'])) {
+                                        # code...
+                                        $pesan = $_GET['pesan'];
+                                        if ($pesan == "usernamesalah") {
+                                    ?>
+                                <div class="alert alert-danger">
+                                    <strong>Danger!</strong> Anda gagal login,user tidak ditemukan.
+                                </div>
+
+                                <?php
+                                        }
+                                      }
+                                    ?>
+                                <form action="cek_login.php" method="POST">
                                     <div class="form-fild">
-                                        <p><label>Username or email address <span class="required">*</span></label></p>
+                                        <p><label>Username <span class="required">*</span></label></p>
                                         <input name="username" value="" type="text">
                                     </div>
                                     <div class="form-fild">
@@ -73,15 +83,10 @@
                                         <input name="password" value="" type="password">
                                     </div>
                                     <div class="login-submit">
-                                        <button type="submit" class="btn" value="login">Login</button>
-                                        <label>
-                                            <input class="checkbox" name="rememberme" value="" type="checkbox">
-                                            <span>Remember me</span>
-                                        </label>
+                                        <button type="submit" class="btn" value="login" name="submit">Login</button>
+
                                     </div>
-                                    <div class="lost-password">
-                                        <a href="register.php">Create Account?</a>
-                                    </div>
+
                                 </form>
                             </div>
                         </div>
@@ -92,9 +97,9 @@
                         }
                     }
                     ?>
-                    
+
                 </div>
-                
+
             </div>
         </div>
         <!--Login Register section end-->

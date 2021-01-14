@@ -75,6 +75,7 @@ $barang = mysqli_fetch_object($result);
                                     </div>
                                     <div class="product-description">
                                         <p><?php echo $barang->deskripsi_barang; ?></p>
+                                        <p>Sisa Stock : <?php echo $barang->jumlah_barang?> set</p>
                                     </div>
 
                                     <div class="single-product-quantity">
