@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 02, 2021 at 04:18 AM
+-- Generation Time: Jan 05, 2021 at 10:53 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -62,7 +62,7 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`kd_barang`, `foto`, `foto_besar`, `nama_barang`, `harga_barang`, `deskripsi_barang`, `jumlah_barang`) VALUES
-('D001', 'gendawa.JPG', 'gendawa_L.JPG', 'Kostum Tari Gendewo', 70000, 'Kostum Tari Gendewo', 10),
+('D001', 'gendawa.JPG', 'gendawa_L.JPG', 'Kostum Tari Gendewo', 70000, 'Kostum Tari Gendewo wo', 10),
 ('D002', 'angsa.JPG', 'angsa_L.JPG', 'Kostum Tari Angsa', 60000, 'Tari Angsa merupakan tari yang berasal dari Jawa Tengah, dimana tarian ini sendiri merupakan tarian yang menggambarkan keagungan dari seorang dewi yang diiringi oleh sekelompok burung angsa sendiri. Tarian ini juga adalah tarian antara perpaduan kebudayaan orang timur maupun barat yang ada di Indonesia sendiri.', 30),
 ('D003', 'Saman.JPG', 'Saman_L.JPG', 'Kostum Tari Saman', 50000, 'Kostum Tari Saman', 25),
 ('D004', 'SukarSumekar.JPG', 'SukarSumekar_L.JPG', 'Kostum Tari Sekar Sumekar', 50000, 'Kostum Tari Sekar Sumekar', 30),
@@ -89,16 +89,10 @@ CREATE TABLE `checkout` (
   `id_customer` varchar(15) NOT NULL,
   `tanggal` date NOT NULL,
   `jumlah_pesanan` int(10) NOT NULL,
-  `total_harga` int(20) NOT NULL
+  `total_harga` int(20) NOT NULL,
+  `payment` varchar(10) NOT NULL,
+  `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `checkout`
---
-
-INSERT INTO `checkout` (`kd_checkout`, `id_customer`, `tanggal`, `jumlah_pesanan`, `total_harga`) VALUES
-('CO001', 'CUS001', '2020-12-29', 2, 100000),
-('CO002', 'CUS002', '2020-12-30', 2, 120000);
 
 -- --------------------------------------------------------
 
@@ -119,14 +113,6 @@ CREATE TABLE `customer` (
   `kode_pos` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `customer`
---
-
-INSERT INTO `customer` (`id_customer`, `no_ktp`, `nama`, `email`, `no_telp`, `alamat`, `provinsi`, `kota/kabupaten`, `kecamatan/kelurahan`, `kode_pos`) VALUES
-('CUS001', '321321', 'dwadwaw', 'dawdw@gmail.com', '312312312', 'dwadwa', 'dwadaw', 'swadqw', 'dwada', 12312),
-('CUS002', '0312312', 'dwada', 'dawd@gmail.com', '32131', 'dwadsa', 'dwadsa', 'dwadsa', 'dwadsa', 12312);
-
 -- --------------------------------------------------------
 
 --
@@ -139,20 +125,6 @@ CREATE TABLE `detail_checkout` (
   `kd_barang` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `jumlah` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `detail_checkout`
---
-
-INSERT INTO `detail_checkout` (`kd_detail`, `kd_checkout`, `kd_barang`, `jumlah`) VALUES
-(124, 'CO001', 'D008', 1),
-(125, 'CO001', 'D008', 1),
-(126, 'CO001', 'D007', 1),
-(127, 'CO001', 'D007', 1),
-(128, 'CO002', 'D008', 1),
-(129, 'CO002', 'D008', 1),
-(130, 'CO002', 'D001', 1),
-(131, 'CO002', 'D001', 1);
 
 --
 -- Indexes for dumped tables
@@ -199,7 +171,7 @@ ALTER TABLE `detail_checkout`
 -- AUTO_INCREMENT for table `detail_checkout`
 --
 ALTER TABLE `detail_checkout`
-  MODIFY `kd_detail` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
+  MODIFY `kd_detail` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=192;
 
 --
 -- Constraints for dumped tables
