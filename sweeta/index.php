@@ -161,8 +161,8 @@
                                 <img src="./assets/images/icons/feature-1.png" class="img-fluid" alt="">
                             </div>
                             <div class="feature-content">
-                                <h4 class="title">Gratis Ongkir</h4>
-                                <p class="short-desc">Area Jember</p>
+                                <h4 class="title">Ambil di Tempat Kami</h4>
+                                <p class="short-desc">Jl.Argopuro 3 C-4</p>
                             </div>
                         </div>
                         <!-- Single Feature End -->
@@ -175,7 +175,7 @@
                             </div>
                             <div class="feature-content">
                                 <h4 class="title">Kualitas Produk</h4>
-                                <p class="short-desc">Kualitas dan bahan terbaik</p>
+                                <p class="short-desc">Kualitas dan Bahan Terbaik</p>
                             </div>
                         </div>
                         <!-- Single Feature End -->
@@ -187,7 +187,7 @@
                                 <img src="./assets/images/icons/feature-3.png" class="img-fluid" alt="">
                             </div>
                             <div class="feature-content">
-                                <h4 class="title">Diskon</h4>
+                                <h4 class="title">Murah</h4>
                                 <p class="short-desc">Sewa Baju Termurah</p>
                             </div>
                         </div>
@@ -245,7 +245,7 @@
                                                                     <tr>
                                                                     <td>Alamat </td>
                                                                     <td> : </td>
-                                                                    <td>Perumahan Jember Permai 1 Jl. Argopuro 3 blok c nmr 4 </td>
+                                                                    <td>Perumahan Jember Permai 1 Jl. Argopuro 3 blok C nomor 4 </td>
                                                                     </tr>
                                                                     <tr>
                                                                     <td>Pekerjaan </td>
