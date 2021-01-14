@@ -66,10 +66,12 @@ $result2 = mysqli_query($con, $sql2);
                         <tr>
                             <td>Status</td>
                             <td>:</td> 
-                            <td><?php if ($checkout->status == true) {
+                            <td><?php if ($checkout->status == 1) {
                                                            echo "<strong>Selesai ✓</strong>";
-                                                        }else {
+                                                        }elseif ($checkout->status == 0) {
                                                             echo "Sewa";
+                                                        }elseif ($checkout->status == 2) {
+                                                            echo "<strong>Batal X</strong>";
                                                         }
                                                         ?></td>
                         </tr>

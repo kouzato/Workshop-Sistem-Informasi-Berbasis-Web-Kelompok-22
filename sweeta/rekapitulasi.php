@@ -53,24 +53,12 @@ $rekap = mysqli_fetch_object($result1);
                                 <h2>Checkout 1 Bulan Terakhir</h2>
                             </td>
                             <td>
-                                <h2>:</h2>
+                                <h2></h2>
                             </td>
                             <td>
-                                <h2><?php echo $rekap->kd_checkout; ?></h2>
+                                <h2></h2>
                             </td>
                         </tr>
-                        <tr>
-                            <td>Tanggal</td>
-                            <td>:</td>
-                            <td><?php echo $rekap->tanggal; ?></td>
-                        </tr>
-                        <tr>
-                            <td>Id Pelanggan</td>
-                            <td>:</td>
-                            <td><?php echo $rekap->id_customer; ?></td>
-                        </tr>
-
-
                     </table>
                     <table class="table table-bordered">
                         <thead class="thead-light">
@@ -119,32 +107,41 @@ $rekap = mysqli_fetch_object($result1);
 
                         <tr>
                             <td>
-                                <h2>Detail Checkout</h2>
+                                <h2>Detail Barang</h2>
                             </td>
-                            
-                        </tr>
-                        <tr>
-                            <td>Tanggal</td>
-                            <td>:</td>
-                            <td><?php echo $rekap->tanggal; ?></td>
-                        </tr>
-                        <tr>
-                            <td>Id Pelanggan</td>
-                            <td>:</td>
-                            <td><?php echo $rekap->id_customer; ?></td>
-                        </tr>
 
+                        </tr>
+                        
 
                     </table>
                     <div class="tab-content">
                         <table class="table">
                             <thead class="thead-light">
+
                                 <tr>
-                                    <th>Kode Checkout</th>
+                                    <th>Kode Barang</th>
+                                    <th>Nama Barang</th>
+                                    <th>Harga Barang</th>
+
+                                    <th>Jumlah</th>
+
                                 </tr>
                             </thead>
-                            <tbody>
 
+                            <tbody>
+                                <?php 
+$select2 = mysqli_query($con,"SELECT * FROM barang");
+
+while ($data2 = mysqli_fetch_array($select2)) {   
+?>
+                                <tr>
+                                    <td><?php echo$data2['kd_barang']?></td>
+                                    <td><?php echo$data2['nama_barang']?></td>
+                                    <td>Rp. <?php echo$data2['harga_barang']?></td>
+                                    <td><?php echo$data2['jumlah_barang']?></td>
+
+                                </tr>
+                                <?php } ?>
                             </tbody>
 
                         </table>

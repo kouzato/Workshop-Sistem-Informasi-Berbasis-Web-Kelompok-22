@@ -34,7 +34,12 @@
 
 <body>
 
-    <?php include "connect.php" ?>
+    <?php include "connect.php";
+    $totalbarangc = $_POST["totalbarang"];     
+    if ($totalbarangc == 0) {
+        header("location:cart.php");
+    }    
+    ?>
 
     <div id="main-wrapper">
 
@@ -75,7 +80,7 @@
 
                                     <!-- Billing Address -->
                                     <div id="billing-form" class="mb-10">
-                                        <h4 class="checkout-title">Isi Alamat mu</h4>
+                                        <h4 class="checkout-title">Isi Alamat mu (Sesuai KTP)</h4>
 
                                         <div class="row">
 
@@ -90,13 +95,14 @@
                                             </div>
 
                                             <div class="col-md-6 col-12 mb-20">
-                                                <label>Nomor KTP*</label>
-                                                <input type="text" placeholder="Nomor KTP" name="noktp"  pattern="[0-9]{16}" required>
+                                                <label>Nomor KTP* (16 Digit)</label>
+                                                <input type="text" placeholder="Nomor KTP" name="noktp"
+                                                    pattern="[0-9]{16}" required>
                                             </div>
 
                                             <div class="col-12 mb-20">
                                                 <label>Nomor Telepon*</label>
-                                                <input type="number" placeholder="Nomor Telepon" name="notelp" required>
+                                                <input type="text" placeholder="Nomor Telepon" name="notelp" required>
                                             </div>
 
                                             <div class="col-12 mb-20">
@@ -122,8 +128,9 @@
                                             </div>
 
                                             <div class="col-md-6 col-12 mb-20">
-                                                <label>Kode Pos*</label>
-                                                <input type="number" placeholder="Kode Pos" name="kodepos"  pattern="[0-9]{5}" required>
+                                                <label>Kode Pos* (6 Digit)</label>
+                                                <input type="number" placeholder="Kode Pos" name="kodepos"
+                                                    pattern="[0-9]{5}" required>
                                             </div>
                                         </div>
                                     </div>
@@ -143,6 +150,7 @@
 
                                                 <ul>
                                                     <?php 
+                                                       
                                                     $nama = $_POST["nama"];
                                                     $kuantitas = $_POST["kuantitas"];
                                                     $subharga = $_POST["subharga"];
@@ -209,11 +217,12 @@
                                                     <p data-method="cash">Bayar saat mengambil barang
                                                     </p>
                                                 </div>
-                                                
+
 
                                                 <div class="single-method">
-                                                    
-                                                    <input type="checkbox" id="accept_terms" value="setuju" required="required">
+
+                                                    <input type="checkbox" id="accept_terms" value="setuju"
+                                                        required="required">
                                                     <label for="accept_terms">Saya telah membaca dan menerima
                                                         Persyaratan & Ketentuan Sweeta</label>
 

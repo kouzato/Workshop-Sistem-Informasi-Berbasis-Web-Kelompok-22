@@ -123,12 +123,14 @@ if(isset($_POST['update'])) {
                         <!-- Cart Table -->
                         <div class="cart-table table-responsive mb-30">
                             <form method="POST" id=check action="checkout.php">
+
                                 <table class="table">
+
                                     <thead>
                                         <tr>
                                             <th class="pro-thumbnail">Foto</th>
                                             <th class="pro-title">Nama Produk</th>
-                                            
+
                                             <th class="pro-quantity">Harga</th>
                                             <th class="pro-subtotal">Tambah</th>
                                             <th class="pro-remove">Hapus</th>
@@ -148,24 +150,25 @@ if(isset($_POST['update'])) {
                                     <tbody>
                                         <tr>
 
-                                            <td class="pro-thumbnail"><a href="#"><img
-                                                        src="assets/images/pic/<?php echo $cart[$i]->foto; ?>"
-                                                        alt="Product"></a>
+                                            <td class="pro-thumbnail"><img
+                                                    src="assets/images/pic/<?php echo $cart[$i]->foto; ?>"
+                                                    alt="Product">
                                             </td>
                                             <td class="pro-title"><span><?php echo $cart[$i]->name; ?></span></td>
-                                            <input type="hidden" name="nama[]" value="<?php echo $cart[$i]->name;?>">
+                                            <input type="hidden" name="nama[]" value="<?php echo $cart[$i]->name;?>"
+                                                require>
                                             <td class="pro-price"><span>Rp. <?php echo $cart[$i]->price; ?></span></td>
                                             <input type="hidden" name="hargabarang">
                                             <td class="pro-quantity">
-                                                <a
-                                                    href="cart.php?kode_barang=<?php echo $cart[$i]->id; ?> &action=add"><i
+                                                <a href="cart.php?kode_barang=<?php echo $cart[$i]->id; ?> &action=add"><i
                                                         class="fa fa-cart-plus"></i></a>
-                                                <input type="hidden" name="kuantitas[]" value=" <?php echo $cart[$i]->kuantitas; 
+                                                <input type="hidden" require name="kuantitas[]" value=" <?php echo $cart[$i]->kuantitas; 
                                                     ?>">
                                                 <?php $subharga = $cart[$i]->price * $cart[$i]->kuantitas;?>
                                             </td>
-                                            
-                                            <input type="hidden" name="subharga[]" value="<?php echo $subharga ?>">
+
+                                            <input type="hidden" name="subharga[]" require
+                                                value="<?php echo $subharga ?>">
 
                                             <td class="pro-remove"><a href="cart.php?index=<?php echo $index; ?>"
                                                     onclick="return confirm('Apakah anda yakin?')"><i
@@ -173,11 +176,24 @@ if(isset($_POST['update'])) {
                                         </tr>
                                         <?php 
                                             $index++;
+                                            $totalbarang = count($cart);
                                         }
                                     
                                         ?>
                                     </tbody>
+                                    
                                 </table>
+                                <h4><span>Jumlah Barang : </span>
+                                    <input type="text" value="<?php 
+                                print $totalbarang; ?>" name="totalbarang" require readonly></h4>
+                                    <style>
+                                    input {
+                                        
+                                        outline: none;
+                                        border: 0;
+                                    }
+
+                                    </style>
                         </div>
                         <div class="row">
 
@@ -189,23 +205,31 @@ if(isset($_POST['update'])) {
                             <!-- Cart Summary -->
                             <div class="col-lg-6 col-12 mb-30 d-flex">
                                 <div class="cart-summary">
+
                                     <div class="cart-summary-wrap">
 
 
                                         <h2>Grand Total <span name="gt">Rp. <?php echo $s; ?></span></h2>
-                                        <input type="hidden" name="grandtotal" value=" <?php echo $s; ?>">
+                                        <input type="hidden" name="grandtotal" require value=" <?php echo $s; ?>">
 
                                     </div>
 
                                     <div class="cart-summary-button">
+                                    
+
                                         <button class="btn" form="check" type="submit" value="submit">Checkout</button>
+                                        
                                     </div>
+                                    
                                 </div>
+                                
                             </div>
 
 
                         </div>
+
                         </form>
+
                     </div>
 
                 </div>
