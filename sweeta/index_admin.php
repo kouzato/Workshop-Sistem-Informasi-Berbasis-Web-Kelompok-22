@@ -178,19 +178,27 @@ include "connect.php";
                                 <div class="tab-pane fade" id="orders" role="tabpanel">
 
                                     <div class="myaccount-content">
+                                        <form action="rekapitulasi.php" method="POST" target="_blank">
+                                        <h3>Orders <button 
+                                                class="btn">Rekapitulasi</button></h3></form>
+                                        <table>
+                                            <tr>Index Action</tr>
+                                            <tr>
+                                                <td><a class="fa fa-eye"></a> = Melihat Nota</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a class="fa fa-trash-o"></a> = Hapus</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a class="">✓</a> = Status Selesai</td>
+                                            </tr>
+                                            <tr>
+                                                <td><a class="">X</a> = Status Batal</td>
+                                            </tr>
+                                        </table>
 
-                                        <h3>Orders <a href="rekapitulasi.php" target="_blank"
-                                                class="btn">Rekapitulasi</a></h3>
-                                                <table>
-                                                <tr>Index Action</tr>
-                                                <tr><td><a class="fa fa-eye"></a> = Melihat Nota</td></tr>
-                                                <tr><td><a class="fa fa-trash-o"></a> = Hapus</td></tr>
-                                                <tr><td><a class="">✓</a> = Status Selesai</td></tr>
-                                                <tr><td><a class="">X</a> = Status Batal</td></tr>
-                                                </table>      
-                                                                                        
                                         <div class="myaccount-table table-responsive text-center">
-                                        
+
                                             <table class="table table-bordered">
                                                 <thead class="thead-light">
 
@@ -258,7 +266,7 @@ include "connect.php";
                                         <h3>Barang <a href="input_barang.php" class="btn">Tambah Barang</a></h3>
 
                                         <div class="myaccount-table table-responsive text-center">
-                                        
+
                                             <table class="table table-bordered">
                                                 <thead class="thead-light">
 
@@ -283,15 +291,17 @@ include "connect.php";
                                                         <td><?php echo$data2['nama_barang']?></td>
                                                         <td>Rp. <?php echo$data2['harga_barang']?></td>
                                                         <td><?php echo$data2['jumlah_barang']?></td>
-                                                        <td><a href="edit_barang.php?kd_barang=<?php echo $data2['kd_barang']; ?>" class="btn">Edit</a>
-                                                            <a href="delete_barang.php?kd_barang=<?php echo $data2['kd_barang']; ?>" class="btn">Delete</a>
+                                                        <td><a href="edit_barang.php?kd_barang=<?php echo $data2['kd_barang']; ?>"
+                                                                class="btn">Edit</a>
+                                                            <a href="delete_barang.php?kd_barang=<?php echo $data2['kd_barang']; ?>"
+                                                                class="btn">Delete</a>
                                                             </a>
                                                         </td>
                                                     </tr>
                                                     <?php } ?>
                                                 </tbody>
                                             </table>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -332,7 +342,7 @@ include "connect.php";
                     <div class="footer-widget col-xl-3 col-lg-3 col-md-6 col-sm-6 col-12 mb-40 mb-xs-35">
                         <div class="header-search-cart-area">
                             <ul>
-                                <li class="currency-menu"><a href="#"><i class="flaticon-user"></i></a>
+                                <li class="currency-menu"><a href="logout.php"><i class="flaticon-user"></i></a>
                                     <!--Crunccy dropdown-->
                                     <ul class="currency-dropdown">
                                         <li><a href="logout.php">Logout</a></li>
