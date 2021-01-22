@@ -30,6 +30,15 @@
         -moz-appearance: textfield;
     }
     </style>
+    <script>
+    function validateForm() {
+        var a = document.forms["check"]["totalbarang"].value;
+        if (a == "" || a == null) {
+            alert("Keranjang Harus Diisi");
+            return false;
+        }
+    }
+    </script>
 
 
 </head>
@@ -122,7 +131,7 @@ if(isset($_POST['update'])) {
                     <div class="col-12">
                         <!-- Cart Table -->
                         <div class="cart-table table-responsive mb-30">
-                            <form method="POST" id=check action="checkout.php">
+                            <form method="POST" name="check" id="check" action="checkout.php" onsubmit="return validateForm()" required>
 
                                 <table class="table">
 
@@ -181,19 +190,19 @@ if(isset($_POST['update'])) {
                                     
                                         ?>
                                     </tbody>
-                                    
+
                                 </table>
                                 <h4><span>Jumlah Barang : </span>
                                     <input type="text" value="<?php 
-                                print $totalbarang; ?>" name="totalbarang" require readonly></h4>
-                                    <style>
-                                    input {
-                                        
-                                        outline: none;
-                                        border: 0;
-                                    }
+                                print $totalbarang; ?>" name="totalbarang" require readonly>
+                                </h4>
+                                <style>
+                                input {
 
-                                    </style>
+                                    outline: none;
+                                    border: 0;
+                                }
+                                </style>
                         </div>
                         <div class="row">
 
@@ -215,14 +224,14 @@ if(isset($_POST['update'])) {
                                     </div>
 
                                     <div class="cart-summary-button">
-                                    
 
-                                        <button class="btn" form="check" type="submit" value="submit">Checkout</button>
-                                        
+
+                                        <button class="btn" form="check" type="submit" value="Submit">Checkout</button>
+
                                     </div>
-                                    
+
                                 </div>
-                                
+
                             </div>
 
 
